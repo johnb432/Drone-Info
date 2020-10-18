@@ -33,6 +33,8 @@ private _uav = getConnectedUAV player;
 [{
  params ["_uav", "_handleid"];
 
+ _uav = getConnectedUAV player;
+
  if !(GVAR(doShow) && {alive player} && {alive _uav}) exitWith {
   [_handleid] call CBA_fnc_removePerFrameHandler;
   GVAR(droneInfoRscLayer) cutText ["", "PLAIN"];
