@@ -1,0 +1,12 @@
+name = "Drone Info";
+//picture = ".paa";
+actionName = "GitHub";
+action = "https://github.com/johnb432/TAO_rewrite";
+description = "Adds a small map/tablet similar but bigger than the Vanilla GPS.";
+//logo = ".paa";
+//logoOver = ".paa";
+tooltip = "Drone Info";
+tooltipOwned = "Drone Info Owned";
+overview = "Description";
+author = "johnb43";
+//overviewPicture = ".paa";
