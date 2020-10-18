@@ -17,7 +17,7 @@ class CfgMods {
   name = "Drone Info";
   hideName = "true";
   actionName = "GitHub";
-  //action = "https://github.com/johnb432/TAO_rewrite";
+  action = "https://github.com/johnb432/Drone-Info";
   description = "Drone Info";
  };
 };
@@ -40,7 +40,7 @@ class RscTitles {
    "DroneInfoStatusDir",
    "DroneInfoStatusPos"
   };
-  
+
   //Background for Panel
   class Drone_Info: RscText {
    idc = 30;
