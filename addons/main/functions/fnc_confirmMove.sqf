@@ -23,11 +23,11 @@ MOVEME closeDisplay 0;
 
 // Make sure new positions are reasonable.
 if (_posX > safeZoneXAbs && {_posY > SAFEZONE_Y && {_posX < safeZoneWAbs && {_posY < SAFEZONE_H}}}) then {
-    call FUNC(refreshDisplay);
+ call FUNC(refreshDisplay);
 
-	// Save to profile namespace.
-	SETPRVAR(displayPosX, _posX);
-	SETPRVAR(displayPosY, _posY);
+ // Save to profile namespace.
+ SETPRVAR(displayPosX, _posX);
+ SETPRVAR(displayPosY, _posY);
 } else {
-	systemChat "Invalid position.";
+ systemChat "Invalid position.";
 };
