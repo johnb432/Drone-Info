@@ -34,6 +34,7 @@ class RscTitles {
   onUnload = "";
   controls[] = {
    "Drone_Info",
+   "DroneInfoStatusName",
    "DroneInfoStatusFuel",
    "DroneInfoStatusSpeed",
    "DroneInfoStatusAlt",
@@ -43,12 +44,12 @@ class RscTitles {
 
   //Background for Panel
   class Drone_Info: RscText {
-   idc = 30;
+   idc = 29;
    style = 0;
    x = QUOTE(DEFAULT_DISPLAY_XPOS);
    y = QUOTE(DEFAULT_DISPLAY_YPOS);
    w = QUOTE(SAFEZONE_W * 0.066);
-   h = QUOTE(SAFEZONE_H * 0.072);//need to edit
+   h = QUOTE(SAFEZONE_H * 0.096);
    colorBackground[] = {0.09, 0.1, 0.13, 1};
    colorText[] = {1, 1, 1, 1};
    sizeEx = "0.015 / (getResolution select 5)";
@@ -60,9 +61,9 @@ class RscTitles {
 
   //Info bars for panels
   class DroneInfoStatusName: Drone_Info {
-   idc = 29;
+   idc = 30;
    colorBackground[] = {0, 0, 0, 0};
-   y = QUOTE(SAFEZONE_Y * -0.65);//need to edit
+   y = QUOTE(SAFEZONE_Y * -0.65);
    h = QUOTE(SAFEZONE_H * 0.016);
   };
 
@@ -123,7 +124,7 @@ class Drone_Info_MovingDialog {
   x = QUOTE(DEFAULT_DISPLAY_XPOS);
   y = QUOTE(DEFAULT_DISPLAY_YPOS);
   w = QUOTE(SAFEZONE_W * 0.066);
-  h = QUOTE(SAFEZONE_H * 0.072);
+  h = QUOTE(SAFEZONE_H * 0.096);
  };
 
  class MoveMe: RscText {
@@ -134,12 +135,12 @@ class Drone_Info_MovingDialog {
   colorText[] = {0, 0, 0, 1};
   lineSpacing = 1.1;
   shadow = 0;
-  sizeEx = "0.01 / (getResolution select 5)";
+  sizeEx = "0.012 / (getResolution select 5)";
   text = "Move me. Press Esc to cancel.";
   x = QUOTE(DEFAULT_DISPLAY_XPOS);
   y = QUOTE(DEFAULT_DISPLAY_YPOS);
   w = QUOTE(SAFEZONE_W * 0.066);
-  h = QUOTE(SAFEZONE_H * 0.072);
+  h = QUOTE(SAFEZONE_H * 0.096);
  };
 
  class ConfirmButton: RscButton {
@@ -150,6 +151,7 @@ class Drone_Info_MovingDialog {
   w = QUOTE(SAFEZONE_W * 0.033);
   h = QUOTE(SAFEZONE_H * 0.03145);
   colorBackground[] = {0, 0, 0, 0.5};
+  sizeEx = "0.018 / (getResolution select 5)";
   text = "Confirm";
   onButtonClick = QUOTE(0 = call FUNC(confirmMove));
  };
