@@ -22,6 +22,7 @@ GVAR(isOpen) = true;
 GVAR(droneInfoRscLayer) cutRsc ["Drone_Info","PLAIN", 0];
 GVAR(doShow) = true;
 
+(DRONEINFO displayCtrl DRONENAME) ctrlShow GVAR(showName);
 (DRONEINFO displayCtrl DRONEFUEL) ctrlShow GVAR(showFuel);
 (DRONEINFO displayCtrl DRONESPEED) ctrlShow GVAR(showSpeed);
 (DRONEINFO displayCtrl DRONEALT) ctrlShow GVAR(showAltitude);
@@ -42,7 +43,8 @@ private _uav = getConnectedUAV player;
   GVAR(isOpen) = false;
  };
 
- (DRONEINFO displayCtrl DRONEFUEL) ctrlSetText (format ["Fuel: %1%", round (100 * fuel _uav)]);
+ (DRONEINFO displayCtrl DRONENAME) ctrlSetText (format ["%1", name _uav]);
+ (DRONEINFO displayCtrl DRONEFUEL) ctrlSetText (format ["Fuel: %1", round (100 * fuel _uav)]);
  (DRONEINFO displayCtrl DRONESPEED) ctrlSetText (format ["Speed: %1 km/h", round (speed _uav)]);
  (DRONEINFO displayCtrl DRONEALT) ctrlSetText (format ["Altitude: %1m", round ((getPos _uav) select 2)]);
  (DRONEINFO displayCtrl DRONEDIR) ctrlSetText (format ["Direction: %1°", round (getDir _uav)]);

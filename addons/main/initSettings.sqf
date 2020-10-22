@@ -14,6 +14,21 @@
 ] call CBA_fnc_addSetting;
 
 [
+ QGVAR(showName),
+ "LIST",
+ ["Display Name", "Displays the name of the drone."],
+ ["Drone Info", "Locks"],
+ [[false, true], ["Disabled", "Enabled"], 1],
+ false,
+ {
+  if (GVAR(enableDroneInfo) && {GVAR(isOpen)}) then {
+   call FUNC(refreshDisplay);
+  };
+ },
+ false
+] call CBA_fnc_addSetting;
+
+[
  QGVAR(showFuel),
  "LIST",
  ["Display Fuel", "Displays the fuel level of the drone in percent."],

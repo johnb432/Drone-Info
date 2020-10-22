@@ -48,7 +48,7 @@ class RscTitles {
    x = QUOTE(DEFAULT_DISPLAY_XPOS);
    y = QUOTE(DEFAULT_DISPLAY_YPOS);
    w = QUOTE(SAFEZONE_W * 0.066);
-   h = QUOTE(SAFEZONE_H * 0.072);
+   h = QUOTE(SAFEZONE_H * 0.072);//need to edit
    colorBackground[] = {0.09, 0.1, 0.13, 1};
    colorText[] = {1, 1, 1, 1};
    sizeEx = "0.015 / (getResolution select 5)";
@@ -59,6 +59,13 @@ class RscTitles {
   };
 
   //Info bars for panels
+  class DroneInfoStatusName: Drone_Info {
+   idc = 29;
+   colorBackground[] = {0, 0, 0, 0};
+   y = QUOTE(SAFEZONE_Y * -0.65);//need to edit
+   h = QUOTE(SAFEZONE_H * 0.016);
+  };
+
   class DroneInfoStatusFuel: Drone_Info {
    idc = 31;
    colorBackground[] = {0, 0, 0, 0};

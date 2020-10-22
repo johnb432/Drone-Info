@@ -19,11 +19,12 @@ private _posX = DISPLAY_XPOS;
 private _posY = DISPLAY_YPOS;
 
 (DRONEINFO displayCtrl BACKGROUND) ctrlSetPosition [_posX, _posY];
-(DRONEINFO displayCtrl DRONEFUEL) ctrlSetPosition [_posX, _posY];
-(DRONEINFO displayCtrl DRONESPEED) ctrlSetPosition [_posX, _posY + 0.025];
-(DRONEINFO displayCtrl DRONEALT) ctrlSetPosition [_posX, _posY + 0.05];
-(DRONEINFO displayCtrl DRONEDIR) ctrlSetPosition [_posX, _posY + 0.075];
-(DRONEINFO displayCtrl DRONEPOS) ctrlSetPosition [_posX, _posY + 0.1];
+(DRONEINFO displayCtrl DRONENAME) ctrlSetPosition [_posX, _posY];
+(DRONEINFO displayCtrl DRONEFUEL) ctrlSetPosition [_posX, _posY + 0.025];
+(DRONEINFO displayCtrl DRONESPEED) ctrlSetPosition [_posX, _posY + 0.05];
+(DRONEINFO displayCtrl DRONEALT) ctrlSetPosition [_posX, _posY + 0.075];
+(DRONEINFO displayCtrl DRONEDIR) ctrlSetPosition [_posX, _posY + 0.1];
+(DRONEINFO displayCtrl DRONEPOS) ctrlSetPosition [_posX, _posY + 0.125];
 
 (DRONEINFO displayCtrl BACKGROUND) ctrlCommit 0;
 (DRONEINFO displayCtrl DRONEFUEL) ctrlCommit 0;
