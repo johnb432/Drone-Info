@@ -15,19 +15,33 @@
  * Public: No
  */
 
-private _posX = DISPLAY_XPOS;
-private _posY = DISPLAY_YPOS;
+private _actuallyShow = [];
 
-(DRONEINFO displayCtrl BACKGROUND) ctrlSetPosition [_posX, _posY];
-(DRONEINFO displayCtrl DRONEFUEL) ctrlSetPosition [_posX, _posY];
-(DRONEINFO displayCtrl DRONESPEED) ctrlSetPosition [_posX, _posY + 0.025];
-(DRONEINFO displayCtrl DRONEALT) ctrlSetPosition [_posX, _posY + 0.05];
-(DRONEINFO displayCtrl DRONEDIR) ctrlSetPosition [_posX, _posY + 0.075];
-(DRONEINFO displayCtrl DRONEPOS) ctrlSetPosition [_posX, _posY + 0.1];
+{
+ if (_x) then {
+  _actuallyShow pushBack _forEachIndex;
+ };
+} forEach [GVAR(showName), GVAR(showFuel), GVAR(showSpeed), GVAR(showAltitude), GVAR(showDirection), GVAR(showPosition)];
 
-(DRONEINFO displayCtrl BACKGROUND) ctrlCommit 0;
-(DRONEINFO displayCtrl DRONEFUEL) ctrlCommit 0;
-(DRONEINFO displayCtrl DRONESPEED) ctrlCommit 0;
-(DRONEINFO displayCtrl DRONEALT) ctrlCommit 0;
-(DRONEINFO displayCtrl DRONEDIR) ctrlCommit 0;
-(DRONEINFO displayCtrl DRONEPOS) ctrlCommit 0;
+private _num = count _actuallyShow;
+
+if (_num > 0) then {
+ private _posX = DISPLAY_XPOS;
+ private _posY = DISPLAY_YPOS;
+ private _displays = [DRONENAME, DRONEFUEL, DRONESPEED, DRONEALT, DRONEDIR, DRONEPOS];
+
+ (DRONEINFO displayCtrl BACKGROUND) ctrlSetPosition [_posX, _posY, SAFEZONE_W * 0.066, SAFEZONE_H * 0.016 * _num];
+ (DRONEINFO displayCtrl BACKGROUND) ctrlCommit 0;
+
+ {
+  (DRONEINFO displayCtrl (_displays select _x)) ctrlSetPosition [_posX, _posY + (_forEachIndex * SAFEZONE_H * 0.016)];
+  (DRONEINFO displayCtrl (_displays select _x)) ctrlCommit 0;
+ } forEach _actuallyShow;
+};
+
+(DRONEINFO displayCtrl DRONENAME) ctrlShow GVAR(showName);
+(DRONEINFO displayCtrl DRONEFUEL) ctrlShow GVAR(showFuel);
+(DRONEINFO displayCtrl DRONESPEED) ctrlShow GVAR(showSpeed);
+(DRONEINFO displayCtrl DRONEALT) ctrlShow GVAR(showAltitude);
+(DRONEINFO displayCtrl DRONEDIR) ctrlShow GVAR(showDirection);
+(DRONEINFO displayCtrl DRONEPOS) ctrlShow GVAR(showPosition);

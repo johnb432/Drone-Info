@@ -32,7 +32,8 @@
 // Display control ID defines.
 #define DRONEINFO (GETUVAR(Drone_Info, nil))
 #define MOVEME (GETUVAR(Drone_Info_MovingDialog, nil))
-#define BACKGROUND 30
+#define BACKGROUND 29
+#define DRONENAME 30
 #define DRONEFUEL 31
 #define DRONESPEED 32
 #define DRONEALT 33
