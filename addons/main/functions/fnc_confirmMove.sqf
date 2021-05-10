@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
  * Author: johnb43
- * Move the foldmap to the position of the moving dialog and save the result.
+ * Move the drone info panel to the position of the moving dialog and save the result.
  *
  * Arguments:
  * None
@@ -15,19 +15,17 @@
  * Public: No
  */
 
-private _pos = ctrlPosition (MOVEME displayCtrl 10);
-private _posX = _pos select 0;
-private _posY = _pos select 1;
+ctrlPosition (MOVEME displayCtrl 10) params ["_posX", "_posY"];
 
 MOVEME closeDisplay 0;
 
 // Make sure new positions are reasonable.
-if (_posX > safeZoneXAbs && {_posY > SAFEZONE_Y && {_posX < safeZoneWAbs && {_posY < SAFEZONE_H}}}) then {
- call FUNC(refreshDisplay);
+if (_posX > safeZoneXAbs && {_posY > safeZoneY} && {_posX < safeZoneWAbs} && {_posY < safeZoneH}) then {
+    call FUNC(refreshDisplay);
 
- // Save to profile namespace.
- SETPRVAR(displayPosX, _posX);
- SETPRVAR(displayPosY, _posY);
+    // Save to profile namespace.
+    DISPLAY_XPOS_SET(_posX);
+    DISPLAY_YPOS_SET(_posY);
 } else {
- systemChat "Invalid position.";
+    systemChat "Invalid position.";
 };

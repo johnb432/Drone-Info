@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
  * Author: johnb43
- * Open and closes the map to refresh the interface.
+ * Open and closes the drone info panel to refresh the interface.
  *
  * Arguments:
  * None

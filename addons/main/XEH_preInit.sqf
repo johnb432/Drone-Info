@@ -8,12 +8,13 @@ PREP_RECOMPILE_END;
 
 #include "initSettings.sqf"
 
-["Drone Info", "toggle", "Toggle Info Panel", {
- call FUNC(toggleDisplay); true
-}, {}, [DIK_U, [false, false, true]]] call cba_fnc_addKeybind;
+[COMPONENT_NAME, GVAR(toggleDisplay), "Toggle Info Panel", {
+    call FUNC(toggleDisplay);
+    true
+}, {}, [DIK_U, [false, false, true]]] call CBA_fnc_addKeybind;
 
-["Drone Info", "configure", "Configure Info Panel",
- ["player", [], -100, QUOTE(call FUNC(fleximenu))],
+[COMPONENT_NAME, GVAR(configureDisplay), "Configure Info Panel",
+    ["player", [], -100, QUOTE(call FUNC(fleximenu))],
 [DIK_U, [false, true, true]]] call CBA_fnc_addKeybindToFleximenu;
 
 ADDON = true;
