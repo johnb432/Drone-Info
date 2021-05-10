@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 
 // Get a rsc layer from the BI system.
-GVAR(droneInfoRscLayer) = ["DroneInfoRsc"] call BIS_fnc_rscLayer;
+GVAR(droneInfoRscLayer) = [QGVAR(layer)] call BIS_fnc_rscLayer;
 
 GVAR(isOpen) = false;
 
@@ -10,7 +10,7 @@ private _posX = DISPLAY_XPOS;
 private _posY = DISPLAY_YPOS;
 
 // Make sure it's on the screen.
-if (_posX > safeZoneXAbs && {_posY > SAFEZONE_Y && {_posX < safeZoneWAbs && {_posY < SAFEZONE_H}}}) then {
- SETPRVAR(displayPosX, _posX);
- SETPRVAR(displayPosY, _posY);
+if (_posX > safeZoneXAbs && {_posY > safeZoneY && {_posX < safeZoneWAbs && {_posY < safeZoneH}}}) then {
+    DISPLAY_XPOS_SET(_posX);
+    DISPLAY_YPOS_SET(_posY);
 };
