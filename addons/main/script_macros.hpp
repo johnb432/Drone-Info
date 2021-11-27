@@ -1,41 +1,45 @@
 #include "\x\cba\addons\main\script_macros_common.hpp"
-#include "\x\cba\addons\xeh\script_xeh.hpp"
 
 //This part includes parts of the CBA and ACE3 macro libraries
 #define GETUVAR(var1,var2) (uiNamespace getVariable [ARR_2(QUOTE(var1),var2)])
 #define GETPRVAR(var1,var2) (profileNamespace getVariable [ARR_2(QUOTE(var1),var2)])
 
+#define SETUVAR(var1,var2) (uiNamespace setVariable [ARR_2(QUOTE(var1),var2)])
 #define SETPRVAR(var1,var2) (profileNamespace setVariable [ARR_2(QUOTE(var1),var2)])
 
-#define FUNC_PATHTO_SYS(var1,var2,var3) \MAINPREFIX\var1\SUBPREFIX\var2\functions\var3.sqf
+#define DFUNC(var1) TRIPLES(ADDON,fnc,var1)
 
 #ifdef DISABLE_COMPILE_CACHE
-    #define PREPFNC(var1) TRIPLES(ADDON,fnc,var1) = compile preProcessFileLineNumbers 'FUNC_PATHTO_SYS(PREFIX,COMPONENT,DOUBLES(fnc,var1))'
+    #undef PREP
+    #define PREP(fncName) DFUNC(fncName) = compile preprocessFileLineNumbers QPATHTOF(functions\DOUBLES(fnc,fncName).sqf)
 #else
-    #define PREPFNC(var1) ['FUNC_PATHTO_SYS(PREFIX,COMPONENT,DOUBLES(fnc,var1))', 'TRIPLES(ADDON,fnc,var1)'] call SLX_XEH_COMPILE_NEW
+    #undef PREP
+    #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fnc,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 #endif
 
-// Hardcoded defaults.
-#define DEFAULT_DISPLAY_XPOS (safeZoneX * -2.17)
-#define DEFAULT_DISPLAY_YPOS (safeZoneY * -0.7)
+// Position getters
+#define DISPLAY_XPOS (GETPRVAR(igui_grid_drone_info_x,POS_X(54.8)))
+#define DISPLAY_YPOS (GETPRVAR(igui_grid_drone_info_y,POS_Y(10.2)))
 
-// Relative positioning defines. Getters
-#define DISPLAY_XPOS (GETPRVAR(GVAR(displayPosX),DEFAULT_DISPLAY_XPOS))
-#define DISPLAY_YPOS (GETPRVAR(GVAR(displayPosY),DEFAULT_DISPLAY_YPOS))
-#define BACK_XPOS (DISPLAY_XPOS - (safeZoneH * 0.093))
-#define BACK_YPOS (DISPLAY_YPOS - (safeZoneH * 0.046))
+// Display control ID defines
+#define IDD_INTERRUPT 49
 
-// Setters
-#define DISPLAY_XPOS_SET(var) (SETPRVAR(GVAR(displayPosX),var))
-#define DISPLAY_YPOS_SET(var) (SETPRVAR(GVAR(displayPosY),var))
+#define IDC_GROUP 28
+#define IDC_BACKGROUND 29
+#define IDC_DRONENAME 30
+#define IDC_DRONEFUEL 31
+#define IDC_DRONESPEED 32
+#define IDC_DRONEALT 33
+#define IDC_DRONEDIR 34
+#define IDC_DRONEPOS 35
 
-// Display control ID defines.
-#define DRONEINFO (GETUVAR(GVAR(droneInfo),nil))
-#define MOVEME (GETUVAR(GVAR(droneInfoMovingDialog),nil))
-#define BACKGROUND 29
-#define DRONENAME 30
-#define DRONEFUEL 31
-#define DRONESPEED 32
-#define DRONEALT 33
-#define DRONEDIR 34
-#define DRONEPOS 35
+#define POS_CALC ((safezoneW / safezoneH) min 1.2)
+#define X_OFF (safezoneX + (safezoneW - POS_CALC) / 2)
+#define Y_OFF (safezoneY + (safezoneH - (POS_CALC / 1.2)) / 2)
+#define W_OFF (POS_CALC / 40)
+#define H_OFF (POS_CALC / 30) // (POS_CALC / 1.2) / 25
+
+#define POS_W(var1) (var1 * W_OFF)
+#define POS_H(var1) (var1 * H_OFF)
+#define POS_X(var1) (POS_W(var1) + X_OFF)
+#define POS_Y(var1) (POS_H(var1) + Y_OFF)

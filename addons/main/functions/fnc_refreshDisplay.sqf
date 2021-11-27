@@ -16,4 +16,10 @@
  */
 
 call FUNC(toggleDisplay);
-[{call FUNC(toggleDisplay)}, [], 0.1] call CBA_fnc_waitAndExecute;
+
+// Best wait 2 frames
+{
+    {
+        call FUNC(toggleDisplay);
+    } call CBA_fnc_execNextFrame;
+} call CBA_fnc_execNextFrame;

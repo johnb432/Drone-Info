@@ -15,7 +15,7 @@
  * Public: No
  */
 
-if (GVAR(enableDroneInfo) && {!isNull(getConnectedUAV player)}) then {
+if (GVAR(enableDroneInfo) && {!isNull getConnectedUAV player}) then {
     if (!GVAR(isOpen)) then {
         call FUNC(openDroneInfo);
     } else {
