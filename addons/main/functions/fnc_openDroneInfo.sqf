@@ -1,7 +1,7 @@
 #include "script_component.hpp"
 /*
  * Author: johnb43
- * Opens the drone info panel and monitors it until receiving a signal to close (GVAR(doShow) == false).
+ * Opens the drone info panel and monitors it until receiving a signal to close.
  *
  * Arguments:
  * None
@@ -15,29 +15,30 @@
  * Public: No
  */
 
-if (GVAR(isOpen) || {!(alive player)}) exitWith {};
+if (GVAR(isOpen) || {!alive player}) exitWith {};
 
-// Initialize the dialog.
+// Initialize the dialog; This calls FUNC(onLoadDialog)
+GVAR(droneInfoRscLayer) cutRsc [QGVAR(droneInfo), "PLAIN"];
 GVAR(isOpen) = true;
-GVAR(droneInfoRscLayer) cutRsc [QGVAR(droneInfo),"PLAIN", 0];
 GVAR(doShow) = true;
 
 [{
-    params ["", "_handleID"];
-
     private _uav = getConnectedUAV player;
 
     if !(GVAR(doShow) && {alive player} && {alive _uav}) exitWith {
-        [_handleID] call CBA_fnc_removePerFrameHandler;
+        (_this select 1) call CBA_fnc_removePerFrameHandler;
+
+        // Close display
         GVAR(droneInfoRscLayer) cutText ["", "PLAIN"];
-        GVAR(doShow) = false;
         GVAR(isOpen) = false;
     };
 
-    (DRONEINFO displayCtrl DRONENAME) ctrlSetText ([configOf _uav] call BIS_fnc_displayName);
-    (DRONEINFO displayCtrl DRONEFUEL) ctrlSetText (format ["Fuel: %1%2", round (100 * fuel _uav), "%"]);
-    (DRONEINFO displayCtrl DRONESPEED) ctrlSetText (format ["Speed: %1 km/h", round (speed _uav)]);
-    (DRONEINFO displayCtrl DRONEALT) ctrlSetText (format ["Altitude: %1m", round ((getPos _uav) select 2)]);
-    (DRONEINFO displayCtrl DRONEDIR) ctrlSetText (format ["Direction: %1°", round (getDir _uav)]);
-    (DRONEINFO displayCtrl DRONEPOS) ctrlSetText (format ["Gridref: %1", mapGridPosition _uav]);
+    private _droneInfo = GETUVAR(GVAR(droneInfo),displayNull);
+
+    (_droneInfo displayCtrl IDC_DRONENAME) ctrlSetText ([configOf _uav] call BIS_fnc_displayName);
+    (_droneInfo displayCtrl IDC_DRONEFUEL) ctrlSetText (format ["Fuel: %1%2", round (100 * fuel _uav), "%"]);
+    (_droneInfo displayCtrl IDC_DRONESPEED) ctrlSetText (format ["Speed: %1 km/h", round speed _uav]);
+    (_droneInfo displayCtrl IDC_DRONEALT) ctrlSetText (format ["Altitude: %1m", round (getPos _uav select 2)]);
+    (_droneInfo displayCtrl IDC_DRONEDIR) ctrlSetText (format ["Direction: %1°", round getDir _uav]);
+    (_droneInfo displayCtrl IDC_DRONEPOS) ctrlSetText (format ["Gridref: %1", mapGridPosition _uav]);
 }, 0] call CBA_fnc_addPerFrameHandler;
