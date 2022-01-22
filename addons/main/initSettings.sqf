@@ -55,7 +55,15 @@
 [
     QGVAR(showPosition),
     "CHECKBOX",
-    ["Display Position", "Displays the position of the drone as a grid reference ."],
+    ["Display Position", "Displays the position of the drone as a grid reference."],
+    [COMPONENT_NAME, "Locks"],
+    true
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(showAmmo),
+    "CHECKBOX",
+    ["Display Ammunition count", "Displays the amount of ammunition remaining in percent."],
     [COMPONENT_NAME, "Locks"],
     true
 ] call CBA_fnc_addSetting;

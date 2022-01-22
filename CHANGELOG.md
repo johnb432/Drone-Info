@@ -1,3 +1,8 @@
+# Changelog for Drone Info 22.1.2022
+
+1.2.1.1
+- Can display total ammo status in percentage now.
+
 # Changelog for Drone Info 27.11.2021
 
 1.2.1.0

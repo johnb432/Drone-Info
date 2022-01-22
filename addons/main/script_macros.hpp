@@ -32,6 +32,9 @@
 #define IDC_DRONEALT 33
 #define IDC_DRONEDIR 34
 #define IDC_DRONEPOS 35
+#define IDC_DRONEAMMO 36
+
+#define MAX_NUM_STATS 7
 
 #define POS_CALC ((safezoneW / safezoneH) min 1.2)
 #define X_OFF (safezoneX + (safezoneW - POS_CALC) / 2)

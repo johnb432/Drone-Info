@@ -10,7 +10,7 @@
  * None
  *
  * Example:
- * call drone_info_main_fnc_onLoadDialog;
+ * display call drone_info_main_fnc_onLoadDialog;
  *
  * Public: No
  */
@@ -27,7 +27,7 @@ private _actuallyShow = [];
     } else {
         (_this displayCtrl (_x select 1)) ctrlShow false;
     };
-} forEach [[GVAR(showName), IDC_DRONENAME], [GVAR(showFuel), IDC_DRONEFUEL], [GVAR(showSpeed), IDC_DRONESPEED], [GVAR(showAltitude), IDC_DRONEALT], [GVAR(showDirection), IDC_DRONEDIR], [GVAR(showPosition), IDC_DRONEPOS]];
+} forEach [[GVAR(showName), IDC_DRONENAME], [GVAR(showFuel), IDC_DRONEFUEL], [GVAR(showSpeed), IDC_DRONESPEED], [GVAR(showAltitude), IDC_DRONEALT], [GVAR(showDirection), IDC_DRONEDIR], [GVAR(showPosition), IDC_DRONEPOS], [GVAR(showAmmo), IDC_DRONEAMMO]];
 
 private _num = count _actuallyShow;
 

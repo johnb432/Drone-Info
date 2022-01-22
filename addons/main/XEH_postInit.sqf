@@ -19,12 +19,54 @@ if (!isNil {GETPRVAR(GVAR(displayPosY),nil)}) then {
 };
 // Old data finished
 
-// This triggers when exiting both "Game" and "Addon Options"
-[missionNamespace, "OnGameOptionsExited", {
-    // Doesn't work if not done in missionnamespace
-    with missionNamespace do {
-        if (GVAR(enableDroneInfo) && {GVAR(isOpen)}) then {
+// Make sure data exists, sometimes it fails
+if (GETPRVAR(igui_grid_drone_info_x,0) isEqualTo 0) then {
+    SETPRVAR(igui_grid_drone_info_x,POS_X(54.8));
+};
+if (GETPRVAR(igui_grid_drone_info_y,0) isEqualTo 0) then {
+    SETPRVAR(igui_grid_drone_info_y,POS_Y(10.2));
+};
+if (GETPRVAR(igui_grid_drone_info_w,0) isEqualTo 0) then {
+    SETPRVAR(igui_grid_drone_info_w,POS_W(5.5));
+};
+if (GETPRVAR(igui_grid_drone_info_h,0) isEqualTo 0) then {
+    SETPRVAR(igui_grid_drone_info_h,POS_H(0.75) * MAX_NUM_STATS);
+};
+
+// Refresh UI after layout has been changed
+["CBA_layoutEditorSaved", {
+    if (!isNil QGVAR(isRefreshing)) exitWith {};
+
+    GVAR(isRefreshing) = true;
+
+    [{
+        // Wait until the pause menu has been closed
+        !((findDisplay IDD_INTERRUPT) in allDisplays);
+    }, {
+        if (GVAR(isOpen)) then {
             call FUNC(refreshDisplay);
         };
-    };
-}] call BIS_fnc_addScriptedEventHandler;
+
+        GVAR(isRefreshing) = nil;
+    }] call CBA_fnc_waitUntilAndExecute;
+}] call CBA_fnc_addEventHandler;
+
+// Refresh UI if any CBA settings of this mod have been changed
+["CBA_SettingChanged", {
+    params ["_setting"];
+
+    if !((QUOTE(ADDON) in _setting) && {isNil QGVAR(isRefreshing)}) exitWith {};
+
+    GVAR(isRefreshing) = true;
+
+    [{
+        // Wait until the pause menu has been closed
+        !((findDisplay IDD_INTERRUPT) in allDisplays);
+    }, {
+        if (GVAR(isOpen)) then {
+            call FUNC(refreshDisplay);
+        };
+
+        GVAR(isRefreshing) = nil;
+    }] call CBA_fnc_waitUntilAndExecute;
+}] call CBA_fnc_addEventHandler;

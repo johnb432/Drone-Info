@@ -7,8 +7,9 @@
 [*] [b]Display Fuel:[/b] Allows the fuel levels of the drone to be shown.
 [*] [b]Display Speed:[/b] Allows the speed of the drone to be shown.
 [*] [b]Display Altitude:[/b] Allows the altitude of the drone to be shown.
-[*] [b]Display Direction:[/b] Allows the direction/bearing of the drone to be shown..
+[*] [b]Display Direction:[/b] Allows the direction/bearing of the drone to be shown.
 [*] [b]Display Position:[/b] Allows the grid reference of the drone to be shown.
+[*] [b]Display Ammunition count:[/b] Allows the amount of ammunition remaining in percent of the drone to be shown.
 [/list]
 
 [h2]CBA Keybinds[/h2]
