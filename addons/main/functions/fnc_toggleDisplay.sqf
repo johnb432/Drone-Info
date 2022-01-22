@@ -15,10 +15,13 @@
  * Public: No
  */
 
-if (GVAR(enableDroneInfo) && {!isNull getConnectedUAV player}) then {
-    if (!GVAR(isOpen)) then {
-        call FUNC(openDroneInfo);
-    } else {
-        GVAR(doShow) = false;
-    };
+if (!GVAR(isOpen)) then {
+    private _player = call CBA_fnc_currentUnit;
+
+    // Exit if in an invalid state for display to open
+    if !(GVAR(enableDroneInfo) && {alive getConnectedUAV _player} && {alive _player}) exitWith {};
+
+    call FUNC(openDroneInfo);
+} else {
+    GVAR(doShow) = false;
 };

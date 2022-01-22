@@ -15,17 +15,16 @@
  * Public: No
  */
 
-if (GVAR(isOpen) || {!alive player}) exitWith {};
-
 // Initialize the dialog; This calls FUNC(onLoadDialog)
 GVAR(droneInfoRscLayer) cutRsc [QGVAR(droneInfo), "PLAIN"];
 GVAR(isOpen) = true;
 GVAR(doShow) = true;
 
 [{
-    private _uav = getConnectedUAV player;
+    private _player = call CBA_fnc_currentUnit;
+    private _uav = getConnectedUAV _player;
 
-    if !(GVAR(doShow) && {alive player} && {alive _uav}) exitWith {
+    if !(GVAR(enableDroneInfo) && {GVAR(doShow)} && {alive _player} && {alive _uav}) exitWith {
         (_this select 1) call CBA_fnc_removePerFrameHandler;
 
         // Close display
@@ -33,7 +32,7 @@ GVAR(doShow) = true;
         GVAR(isOpen) = false;
     };
 
-    private _droneInfo = GETUVAR(GVAR(droneInfo),displayNull);
+    (_this select 0) params ["_droneInfo", "_cfgMagazines"];
 
     (_droneInfo displayCtrl IDC_DRONENAME) ctrlSetText ([configOf _uav] call BIS_fnc_displayName);
     (_droneInfo displayCtrl IDC_DRONEFUEL) ctrlSetText (format ["Fuel: %1%2", round (100 * fuel _uav), "%"]);
@@ -41,4 +40,22 @@ GVAR(doShow) = true;
     (_droneInfo displayCtrl IDC_DRONEALT) ctrlSetText (format ["Altitude: %1m", round (getPos _uav select 2)]);
     (_droneInfo displayCtrl IDC_DRONEDIR) ctrlSetText (format ["Direction: %1°", round getDir _uav]);
     (_droneInfo displayCtrl IDC_DRONEPOS) ctrlSetText (format ["Gridref: %1", mapGridPosition _uav]);
-}, 0] call CBA_fnc_addPerFrameHandler;
+
+    private _ammoStatus = [];
+    private _magazine = "";
+
+    // Get all percentages for all turrets
+    {
+        _magazine = _x select 0;
+
+        // Exclude batteries because they don't get used up quickly
+        if (_magazine == "Laserbatteries") then {
+            continue;
+        };
+
+        _ammoStatus pushBack ((_x select 2) / (getNumber (_cfgMagazines >> _magazine >> "count")));
+    } forEach magazinesAllTurrets _uav;
+
+    // Display nothing if nothing present
+    (_droneInfo displayCtrl IDC_DRONEAMMO) ctrlSetText (if (_ammoStatus isEqualTo []) then {""} else {format ["Ammo: %1%2", round (100 * (_ammoStatus call BIS_fnc_arithmeticMean)), "%"]});
+}, 0, [GETUVAR(GVAR(droneInfo),displayNull), configFile >> "CfgMagazines"]] call CBA_fnc_addPerFrameHandler;
