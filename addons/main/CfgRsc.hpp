@@ -15,6 +15,7 @@ class RscTitles {
             QGVAR(statusAlt),
             QGVAR(statusDir),
             QGVAR(statusPos),
+            QGVAR(statusHealth),
             QGVAR(statusAmmo)
         };
 
@@ -77,10 +78,17 @@ class RscTitles {
             h = POS_H(0.75);
         };
 
+        class GVAR(statusHealth): GVAR(background) {
+            idc = IDC_DRONEHEALTH;
+            colorBackground[] = {0, 0, 0, 0};
+            y = POS_Y(10.2) + 6 * POS_H(0.75);
+            h = POS_H(0.75);
+        };
+
         class GVAR(statusAmmo): GVAR(background) {
             idc = IDC_DRONEAMMO;
             colorBackground[] = {0, 0, 0, 0};
-            y = POS_Y(10.2) + 6 * POS_H(0.75);
+            y = POS_Y(10.2) + 7 * POS_H(0.75);
             h = POS_H(0.75);
         };
     };

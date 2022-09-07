@@ -26,6 +26,7 @@
 
 #define IDC_GROUP 28
 #define IDC_BACKGROUND 29
+
 #define IDC_DRONENAME 30
 #define IDC_DRONEFUEL 31
 #define IDC_DRONESPEED 32
@@ -33,8 +34,9 @@
 #define IDC_DRONEDIR 34
 #define IDC_DRONEPOS 35
 #define IDC_DRONEAMMO 36
+#define IDC_DRONEHEALTH 37
 
-#define MAX_NUM_STATS 7
+#define MAX_NUM_STATS 8
 
 #define POS_CALC ((safezoneW / safezoneH) min 1.2)
 #define X_OFF (safezoneX + (safezoneW - POS_CALC) / 2)

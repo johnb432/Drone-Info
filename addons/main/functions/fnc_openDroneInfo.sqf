@@ -40,6 +40,7 @@ GVAR(doShow) = true;
     (_droneInfo displayCtrl IDC_DRONEALT) ctrlSetText (format ["Altitude: %1m", round (getPos _uav select 2)]);
     (_droneInfo displayCtrl IDC_DRONEDIR) ctrlSetText (format ["Direction: %1°", round getDir _uav]);
     (_droneInfo displayCtrl IDC_DRONEPOS) ctrlSetText (format ["Gridref: %1", mapGridPosition _uav]);
+    (_droneInfo displayCtrl IDC_DRONEHEALTH) ctrlSetText (format ["Health: %1%2", round (100 * (1 - damage _uav)), "%"]);
 
     private _ammoStatus = [];
     private _magazine = "";
@@ -56,6 +57,6 @@ GVAR(doShow) = true;
         _ammoStatus pushBack ((_x select 2) / (getNumber (_cfgMagazines >> _magazine >> "count")));
     } forEach magazinesAllTurrets _uav;
 
-    // Display nothing if nothing present
-    (_droneInfo displayCtrl IDC_DRONEAMMO) ctrlSetText (if (_ammoStatus isEqualTo []) then {""} else {format ["Ammo: %1%2", round (100 * (_ammoStatus call BIS_fnc_arithmeticMean)), "%"]});
+    // Display "-" if nothing present
+    (_droneInfo displayCtrl IDC_DRONEAMMO) ctrlSetText (if (_ammoStatus isEqualTo []) then {"Ammo: -"} else {format ["Ammo: %1%2", round (100 * (_ammoStatus call BIS_fnc_arithmeticMean)), "%"]});
 }, 0, [GETUVAR(GVAR(droneInfo),displayNull), configFile >> "CfgMagazines"]] call CBA_fnc_addPerFrameHandler;
