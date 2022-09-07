@@ -9,6 +9,7 @@
 [*] [b]Display Altitude:[/b] Allows the altitude of the drone to be shown.
 [*] [b]Display Direction:[/b] Allows the direction/bearing of the drone to be shown.
 [*] [b]Display Position:[/b] Allows the grid reference of the drone to be shown.
+[*] [b]Display Health:[/b] Allows the health in percent to be shown.
 [*] [b]Display Ammunition count:[/b] Allows the amount of ammunition remaining in percent of the drone to be shown.
 [/list]
 

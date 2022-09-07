@@ -9,6 +9,7 @@
 * **Display Altitude:** Allows the altitude of the drone to be shown.
 * **Display Direction:** Allows the direction/bearing of the drone to be shown.
 * **Display Position:** Allows the grid reference of the drone to be shown.
+* **Display Health:** Allows the health in percent to be shown.
 * **Display Ammunition count:** Allows the amount of ammunition remaining in percent of the drone to be shown.
 
 <h2>CBA Keybinds</h2>

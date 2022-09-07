@@ -4,7 +4,6 @@ tooltip = "Drone Info";
 tooltipOwned = "Drone Info";
 hideName = 0;
 hidePicture = 0;
-dir = "@drone_info";
 actionName = "Github";
 action = "https://github.com/johnb432/Drone-Info";
 description = "Adds a info panel that shows drone information.";

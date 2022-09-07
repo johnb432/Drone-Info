@@ -1,3 +1,8 @@
+# Changelog for Drone Info 7.9.2022
+
+1.2.1.2
+- Can display total health in percentage now.
+
 # Changelog for Drone Info 22.1.2022
 
 1.2.1.1

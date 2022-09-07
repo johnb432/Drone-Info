@@ -27,17 +27,24 @@ private _actuallyShow = [];
     } else {
         (_this displayCtrl (_x select 1)) ctrlShow false;
     };
-} forEach [[GVAR(showName), IDC_DRONENAME], [GVAR(showFuel), IDC_DRONEFUEL], [GVAR(showSpeed), IDC_DRONESPEED], [GVAR(showAltitude), IDC_DRONEALT], [GVAR(showDirection), IDC_DRONEDIR], [GVAR(showPosition), IDC_DRONEPOS], [GVAR(showAmmo), IDC_DRONEAMMO]];
-
-private _num = count _actuallyShow;
+} forEach [
+    [GVAR(showName), IDC_DRONENAME],
+    [GVAR(showFuel), IDC_DRONEFUEL],
+    [GVAR(showSpeed), IDC_DRONESPEED],
+    [GVAR(showAltitude), IDC_DRONEALT],
+    [GVAR(showDirection), IDC_DRONEDIR],
+    [GVAR(showPosition), IDC_DRONEPOS],
+    [GVAR(showHealth), IDC_DRONEHEALTH],
+    [GVAR(showAmmo), IDC_DRONEAMMO]
+];
 
 // If nothing should be shown, exit
-if (_num isEqualTo 0) exitWith {};
+if (_actuallyShow isEqualTo []) exitWith {};
 
 private _posX = DISPLAY_XPOS;
 private _posY = DISPLAY_YPOS;
 
-(_this displayCtrl IDC_BACKGROUND) ctrlSetPosition [_posX, _posY, POS_W(5.5), POS_H(0.75) * _num];
+(_this displayCtrl IDC_BACKGROUND) ctrlSetPosition [_posX, _posY, POS_W(5.5), POS_H(0.75) * count _actuallyShow];
 (_this displayCtrl IDC_BACKGROUND) ctrlCommit 0;
 
 // Set controls in right positions

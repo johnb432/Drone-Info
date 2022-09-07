@@ -61,6 +61,14 @@
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(showHealth),
+    "CHECKBOX",
+    ["Display Health", "Displays the health in percent."],
+    [COMPONENT_NAME, "Locks"],
+    true
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(showAmmo),
     "CHECKBOX",
     ["Display Ammunition count", "Displays the amount of ammunition remaining in percent."],
