@@ -25,7 +25,7 @@
 [/list]
 
 [h2]Credit[/h2]
-
-Mod by johnb43
-
-[url=https://www.onlinewebfonts.com/icon/536439]Mod Icon[/url] from [url=http://www.onlinewebfonts.com/icon]Icon Fonts[/url] which is licensed by CC BY 3.0.
+[list]
+[*] [url=https://www.onlinewebfonts.com/icon/536439]Mod Icon[/url] from [url=http://www.onlinewebfonts.com/icon]Icon Fonts[/url] which is licensed by CC BY 3.0
+[*] Mod by johnb43
+[/list]

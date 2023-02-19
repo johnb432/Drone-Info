@@ -23,6 +23,15 @@
 
 <h2>Credit</h2>
 
-Mod by johnb43
+* [Mod Icon](https://www.onlinewebfonts.com/icon/536439) from [Icon Fonts](http://www.onlinewebfonts.com/icon) which is licensed by CC BY 3.0.
+* Mod by johnb43
 
-[Mod Icon](https://www.onlinewebfonts.com/icon/536439) from [Icon Fonts](http://www.onlinewebfonts.com/icon) which is licensed by CC BY 3.0.
+<h2>License</h2>
+
+See LICENSE.
+
+<h2>How to create PBOs</h2>
+
+* Download and install hemtt from [here](https://github.com/BrettMayson/HEMTT)
+* Open command terminal, navigate to said folder (Windows: cd 'insert path')
+* Type "hemtt build" for pbo, "hemtt build --release" for entire release
